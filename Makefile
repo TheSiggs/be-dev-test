@@ -14,7 +14,7 @@ help: # Lists commands
 		 }' $(MAKEFILE_LIST)
 
 
-start: up migrate # Sets up the project and starts all the containers
+start: up migrate generate-key # Sets up the project and starts all the containers
 
 up: # Starts the containers
     # Setting up containers individually to allow chaining of make up migrate to not fail due to the db container not running in time
@@ -29,3 +29,6 @@ migrate: # Runs the migrations
 
 import-data: # Imports customer data
 	@sh migrate_customers.sh
+
+generate-key: # Generates the encryption key
+	docker compose exec app php artisan key:generate
