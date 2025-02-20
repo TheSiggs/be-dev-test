@@ -18,11 +18,14 @@ start: up migrate # Sets up the project and starts all the containers
 
 up: # Starts the containers
     # Setting up containers individually to allow chaining of make up migrate to not fail due to the db container not running in time
-	docker compose up db -d
-	docker compose up app -d
+	docker compose up db -d --build
+	docker compose up app -d --build
 
 down: # Downs the containers
 	docker compose down -t1
 
 migrate: # Runs the migrations
 	docker compose exec app php artisan migrate --force
+
+import-data: # Imports customer data
+	@sh migrate_customers.sh

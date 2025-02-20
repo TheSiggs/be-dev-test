@@ -22,20 +22,25 @@
           pdo_mysql
           pdo_sqlite
           pdo_pgsql
+          xmlwriter
           redis
           tokenizer
           zip
+          filter
         ]);
 
-      in {
+      in
+      {
         devShells.default = pkgs.mkShell {
           name = "Laravel Dev Shell";
           buildInputs = [
             php
-            pkgs.phpExtensions.mbstring  # Explicitly include mbstring
-            pkgs.phpExtensions.iconv     # Explicitly include iconv
+            pkgs.phpExtensions.mbstring # Explicitly include mbstring
+            pkgs.phpExtensions.iconv # Explicitly include iconv
             pkgs.phpPackages.composer
             pkgs.phpExtensions.xdebug
+            pkgs.phpExtensions.xml
+            pkgs.phpExtensions.xmlwriter
             pkgs.nodejs_20
             pkgs.yarn
             pkgs.mariadb
