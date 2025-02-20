@@ -27,7 +27,21 @@ class CustomerController
      */
     public function store(Request $request)
     {
-        return response()->json("Boobs", 200);
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'nullable|string|max:255',
+            'email' => 'required|email|unique:customers,email|max:255',
+            'gender' => 'nullable|string|max:255',
+            'company' => 'nullable|string|max:255',
+            'city' => 'nullable|string|max:255',
+            'title' => 'nullable|string|max:255',
+            'website' => 'nullable|url|max:2048',
+        ]);
+
+        $validated['ip_address'] = $request->ip();
+        $customer = Customer::create($validated);
+
+        return response()->json($customer, 201);
     }
 
     /**
@@ -35,8 +49,15 @@ class CustomerController
      */
     public function show(string $id)
     {
-        //
-        return response()->json("Boobs", 200);
+        if (!is_numeric($id)) {
+            return response()->json(['error' => 'Invalid id'], 400);
+        }
+
+        $customer = Customer::find($id);
+        if (!$customer) {
+            return response()->json(['error' => 'Customer not found'], 404);
+        }
+        return response()->json($customer, 200);
     }
 
     /**
@@ -44,8 +65,31 @@ class CustomerController
      */
     public function update(Request $request, string $id)
     {
-        //
-        return response()->json("Boobs", 200);
+        if (!is_numeric($id)) {
+            return response()->json(['error' => 'Invalid id'], 400);
+        }
+
+        $customer = Customer::find($id);
+        if (!$customer) {
+            return response()->json(['error' => 'Customer not found'], 404);
+        }
+
+        $validated = $request->validate([
+            'first_name' => 'sometimes|string|max:255',
+            'last_name' => 'sometimes|string|max:255',
+            'email' => 'sometimes|email|unique:customers,email|max:255',
+            'gender' => 'sometimes|string|max:255',
+            'company' => 'sometimes|string|max:255',
+            'city' => 'sometimes|string|max:255',
+            'title' => 'sometimes|string|max:255',
+            'website' => 'sometimes|url|max:2048',
+        ]);
+
+        $validated['ip_address'] = $request->ip();
+
+        $customer->update($validated);
+
+        return response()->json($customer, 200);
     }
 
     /**
@@ -53,7 +97,17 @@ class CustomerController
      */
     public function destroy(string $id)
     {
-        //
-        return response()->json("Boobs", 200);
+        if (!is_numeric($id)) {
+            return response()->json(['error' => 'Invalid id'], 400);
+        }
+
+        $customer = Customer::find($id);
+        if (!$customer) {
+            return response()->json(['error' => 'Customer not found'], 404);
+        }
+
+        $customer->delete();
+
+        return response()->json(['message' => 'Customer deleted'], 200);
     }
 }
