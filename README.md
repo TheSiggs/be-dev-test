@@ -13,11 +13,11 @@ The project follows best practices in Laravel development, making use of MVC arc
 ## Prerequisites
 To run this project locally, ensure you have the following installed:
 
-- PHP >= 8.1
+- PHP >= 8.2
 - Composer
-- Laravel >= 10
-- MySQL or PostgreSQL (or any supported database)
-- Node.js & npm (for frontend dependencies if applicable)
+- Laravel >= 11
+- MySQL 
+- Node.js & npm 
 - CMake
 
 ## Installation
