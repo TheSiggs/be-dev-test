@@ -9,6 +9,7 @@ The project follows best practices in Laravel development, making use of MVC arc
 - RESTful API endpoints
 - Database migrations & seeders
 - Easy setup with Make
+- Postman and HTTP collection to document API endpoints
 
 ## Prerequisites
 To run this project locally, ensure you have the following installed:
@@ -96,3 +97,4 @@ php artisan test
 - Add authenication on the front end
 - Improve accessibility 
 - Add timestamps to customer migration script
+- Use Swagger to document API

@@ -1,0 +1,80 @@
+# New User
+POST http://127.0.0.1:8000/api/register
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name": "Jeff",
+    "email": "jeff@example.com",
+    "password": "password123"
+}
+
+###
+
+# Login
+POST http://127.0.0.1:8000/api/login
+Content-Type: application/json
+
+{
+    "email": "jeff@example.com",
+    "password": "password123"
+}
+
+###
+
+# Get Customer
+GET http://127.0.0.1:8000/api/customers/1
+Accept: application/json
+Authorization: Bearer 1|kBQkURlqsxklx86doIBFjWpddog0nAsilrdcnGjnea4846ad
+
+###
+
+# List Customers
+GET http://127.0.0.1:8000/api/customers?per_page=5&page=1
+Accept: application/json
+Authorization: Bearer 1|kBQkURlqsxklx86doIBFjWpddog0nAsilrdcnGjnea4846ad
+
+###
+
+# Create Customer
+POST http://127.0.0.1:8000/api/customers
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 1|kBQkURlqsxklx86doIBFjWpddog0nAsilrdcnGjnea4846ad
+
+{
+    "first_name": "Jeff",
+    "last_name": "Smith",
+    "email": "jeff@example.com",
+    "gender": "Male",
+    "company": "TechCorp",
+    "city": "Auckland",
+    "title": "Software Engineer",
+    "website": "https://jefftech.com"
+}
+
+###
+
+# Update Customer
+PUT http://127.0.0.1:8000/api/customers/1002
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 1|kBQkURlqsxklx86doIBFjWpddog0nAsilrdcnGjnea4846ad
+
+{
+    "first_name": "Jeff",
+    "last_name": "Smith",
+    "gender": "Male",
+    "company": "TechCorp",
+    "city": "Auckland",
+    "title": "Software Engineer",
+    "website": "https://jefftech.com"
+}
+
+###
+
+# Delete Customer
+DELETE http://127.0.0.1:8000/api/customers/1001
+Accept: application/json
+Authorization: Bearer 1|kBQkURlqsxklx86doIBFjWpddog0nAsilrdcnGjnea4846ad
+
