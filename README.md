@@ -81,5 +81,5 @@ php artisan test
 ## TODO:
 - Add tests
 - Add authenication on the front end
-- Improve Accessability 
+- Improve accessibility 
 - Add timestamps to customer migration script
