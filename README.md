@@ -24,8 +24,8 @@ To run this project locally, ensure you have the following installed:
 ### With Makefile
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/your-laravel-project.git
-   cd your-laravel-project
+   git clone git@github.com:TheSiggs/be-dev-test.git
+   cd be-dev-test
    ```
 2. Run `make start` - this will build the docker containers and run the migrations
 
@@ -35,8 +35,8 @@ You can also run `make` to get the list of make targets you can run and what the
 ### With PHP
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/your-laravel-project.git
-   cd your-laravel-project
+   git clone git@github.com:TheSiggs/be-dev-test.git
+   cd be-dev-test
    ```
 
 2. Install dependencies:
@@ -65,6 +65,19 @@ You can also run `make` to get the list of make targets you can run and what the
    ```sh
    php artisan serve
    ```
+
+### With Nix Flakes
+If you have nixos and nix flakes enabled you can do the following to set up a 
+dev environment
+
+With direnv:
+- `cp .envrc.sample .envrc`
+- `direnv allow`
+Nix should install all the necessary dependencies
+
+Without direnv:
+- `nix develop`
+Nix should install all the necessary dependencies
 
 ## Testing
 To run unit and feature tests:
